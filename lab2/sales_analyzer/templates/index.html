@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세일즈 데이터 분석기</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .container { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); max-width: 500px; width: 90%; }
+        h1 { text-align: center; color: #333; margin-bottom: 30px; font-size: 2em; }
+        .upload-area { border: 3px dashed #667eea; border-radius: 10px; padding: 40px; text-align: center; margin: 20px 0; transition: all 0.3s ease; }
+        .upload-area:hover { border-color: #764ba2; background: #f8f9fa; }
+        .upload-area input[type="file"] { display: none; }
+        .upload-btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 30px; border: none; border-radius: 25px; cursor: pointer; font-size: 16px; transition: transform 0.3s ease; }
+        .upload-btn:hover { transform: translateY(-2px); }
+        .file-info { margin-top: 15px; color: #666; }
+        .submit-btn { background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 15px 40px; border: none; border-radius: 25px; cursor: pointer; font-size: 18px; width: 100%; margin-top: 20px; transition: transform 0.3s ease; }
+        .submit-btn:hover { transform: translateY(-2px); }
+        .submit-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+        .flash-messages { margin-bottom: 20px; }
+        .flash-message { padding: 10px; border-radius: 5px; margin-bottom: 10px; }
+        .flash-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #e7f3ff; padding: 20px; border-radius: 10px; margin-top: 20px; }
+        .info h3 { color: #667eea; margin-bottom: 10px; }
+        .info ul { padding-left: 20px; }
+        .info li { margin: 5px 0; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 세일즈 데이터 분석기</h1>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <div class="flash-message flash-error">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <form action="/upload" method="post" enctype="multipart/form-data" id="uploadForm">
+            <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                <div>
+                    <h3>📁 CSV 파일을 업로드하세요</h3>
+                    <p>클릭하거나 파일을 드래그하여 업로드</p>
+                    <input type="file" id="fileInput" name="file" accept=".csv" onchange="showFileInfo(this)">
+                    <button type="button" class="upload-btn">파일 선택</button>
+                </div>
+                <div class="file-info" id="fileInfo"></div>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="submitBtn" disabled>분석 시작</button>
+        </form>
+        
+        <div class="info">
+            <h3>📋 필요한 CSV 컬럼</h3>
+            <ul>
+                <li>마케팅채널</li>
+                <li>총금액</li>
+                <li>할인율</li>
+                <li>카테고리</li>
+                <li>수량</li>
+                <li>고객연령</li>
+                <li>고객성별</li>
+                <li>고객지역</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function showFileInfo(input) {
+            const fileInfo = document.getElementById('fileInfo');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                fileInfo.innerHTML = `
+                    <strong>선택된 파일:</strong> ${file.name}<br>
+                    <strong>크기:</strong> ${(file.size / 1024 / 1024).toFixed(2)} MB
+                `;
+                submitBtn.disabled = false;
+            } else {
+                fileInfo.innerHTML = '';
+                submitBtn.disabled = true;
+            }
+        }
+        
+        // 드래그 앤 드롭 기능
+        const uploadArea = document.querySelector('.upload-area');
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#764ba2';
+            uploadArea.style.background = '#f8f9fa';
+        });
+        
+        uploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#667eea';
+            uploadArea.style.background = 'white';
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#667eea';
+            uploadArea.style.background = 'white';
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                document.getElementById('fileInput').files = files;
+                showFileInfo(document.getElementById('fileInput'));
+            }
+        });
+    </script>
+</body>
+</html>
