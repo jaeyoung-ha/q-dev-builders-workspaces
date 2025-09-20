@@ -1,0 +1,11 @@
+interviewer_id,name,email,department,position,expertise,phone,available_days,available_start_time,available_end_time,max_interviews_per_day,preferred_interview_duration,notes
+INT001,김민수,minsu.kim@company.com,개발팀,시니어 개발자,"React,JavaScript,TypeScript,Frontend",010-1234-5678,"월,화,수,목,금",09:00,18:00,3,60,"프론트엔드 기술 면접 전문, 코딩 테스트 진행 가능"
+INT002,박지영,jiyoung.park@company.com,개발팀,테크리드,"Node.js,Python,AWS,Backend,Architecture",010-2345-6789,"월,화,수,목,금",10:00,17:00,2,90,"백엔드 아키텍처 설계 경험 풍부, 시스템 설계 면접 가능"
+INT003,이준호,junho.lee@company.com,데이터팀,데이터 사이언티스트,"Python,SQL,Machine Learning,Statistics",010-3456-7890,"화,수,목,금",09:30,16:30,3,75,"데이터 분석 및 머신러닝 면접 전문"
+INT004,최수진,sujin.choi@company.com,디자인팀,UX 디자인 매니저,"UX Design,User Research,Figma,Prototyping",010-4567-8901,"월,수,금",10:00,15:00,2,60,"UX 포트폴리오 리뷰 및 디자인 사고 평가"
+INT005,정태현,taehyun.jung@company.com,인프라팀,DevOps 엔지니어,"AWS,Kubernetes,Docker,CI/CD,Terraform",010-5678-9012,"월,화,목,금",09:00,17:00,2,90,"클라우드 인프라 및 DevOps 실무 면접"
+INT006,한소영,soyoung.han@company.com,개발팀,풀스택 개발자,"React,Node.js,Database,API Design",010-6789-0123,"월,화,수,목",11:00,18:00,3,60,"풀스택 개발 경험 평가, 실무 프로젝트 리뷰"
+INT007,윤대성,daesung.yoon@company.com,데이터팀,데이터 엔지니어,"Python,Spark,Hadoop,Data Pipeline,ETL",010-7890-1234,"화,수,목,금",09:00,16:00,2,75,"빅데이터 처리 및 데이터 파이프라인 면접"
+INT008,강혜림,hyerim.kang@company.com,개발팀,모바일 개발자,"React Native,iOS,Android,Mobile UX",010-8901-2345,"월,수,금",10:30,17:30,2,60,"모바일 앱 개발 및 크로스플랫폼 경험 평가"
+INT009,임성민,seongmin.lim@company.com,보안팀,보안 엔지니어,"Security,Penetration Testing,Compliance",010-9012-3456,"월,화,수,목",09:00,15:00,2,90,"보안 관련 기술 면접 및 보안 인식 평가"
+INT010,조은비,eunbi.cho@company.com,HR팀,HR 매니저,"Recruitment,Culture Fit,Communication",010-0123-4567,"월,화,수,목,금",09:00,18:00,5,45,"문화 적합성 및 인성 면접, 최종 면접 진행"
